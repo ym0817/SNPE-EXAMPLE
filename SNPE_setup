@@ -1,0 +1,104 @@
+1.snpe 官网下载安装包,各种版本,Downloas-->Software-->Actlive
+https://developer.qualcomm.com/sites/default/files/docs/snpe/
+tutorial_alexnet.html
+下载安装SDK
+https://developer.qualcomm.com/software/qualcomm-neural-processing-sdk/tools-archive
+
+
+2 创建虚拟环境并激活
+conda create -n snpe_210 python==3.6.5
+source activate snpe_210
+
+3 pip 安装依赖包
+alabaster==0.7.13
+Babel==2.11.0
+certifi==2021.5.30
+charset-normalizer==2.0.12
+commonmark==0.9.1
+cycler==0.11.0
+dataclasses==0.8
+decorator==4.4.2
+docutils==0.18.1
+flatbuffers==23.5.26
+idna==3.6
+imageio==2.15.0
+imagesize==1.4.1
+Jinja2==3.0.3
+kiwisolver==1.3.1
+MarkupSafe==2.0.1
+matplotlib==3.3.4
+networkx==2.5.1
+numpy==1.19.5
+onnx==1.7.0
+onnx-simplifier==0.4.10
+onnxruntime==1.10.0
+packaging==21.3
+Pillow==8.4.0
+protobuf==3.6.0
+Pygments==2.14.0
+pyparsing==3.0.7
+python-dateutil==2.8.2
+pytz==2023.3.post1
+PyWavelets==1.1.1
+PyYAML==3.10
+requests==2.27.1
+rich==12.0.1
+scikit-image==0.17.2
+scipy==1.5.4
+six==1.16.0
+snowballstemmer==2.2.0
+Sphinx==2.2.1
+sphinxcontrib-applehelp==1.0.2
+sphinxcontrib-devhelp==1.0.2
+sphinxcontrib-htmlhelp==2.0.0
+sphinxcontrib-jsmath==1.0.1
+sphinxcontrib-qthelp==1.0.3
+sphinxcontrib-serializinghtml==1.1.5
+tifffile==2020.9.3
+typing_extensions==4.1.1
+urllib3==1.26.18
+
+4 添加环境变量
+gedit ~/.bashrc
+在最下面添加如下路径
+# SNPE168
+export LD_LIBRARY_PATH=/home/ymm/Software/snpe-1.68.0.3932/bin/x86_64-linux-clang:$LD_LIBRARY_PATH
+export SNPE_ROOT=/home/ymm/Software/snpe-1.68.0.3932
+export PYTHONPATH=$PYTHONPATH:/home/ymm/Software/snpe-1.68.0.3932/lib/python
+最后执行一下
+ source ~/.bashrc
+
+5 运行 onnx 转 dlc,需要激活 onnx 环境,命令如下:
+cd /home/ymm/Software/snpe-1.68.0.3932/bin
+source envsetup.sh -o
+/home/ymm/anaconda3/envs/snpe_210/lib/python3.6/site-packages/onnx
+此时,可能会出现Android错误, 若 情 况 允 许 可 以 安 装 Android Studio , 下 载 ANDROID_NDK , 指 定
+ANDROID_NDK_ROOT,如没有,对于模型转换这一步也没影响的。
+export ANDROID_NDK_ROOT=~/Android/Sdk/ndk-bundle
+
+6 进行模型转换
+cd /home/ymm/Software/snpe-1.68.0.3932/bin/x86_64-linux-clang
+./snpe-onnx-to-dl -i model.onnx -o model.dlc
+若转换不成功,尝试一下 onnxsim,命令如下:
+python3 -m onnxsim model.onnx model_sim.onnx
+再次执行 ./snpe-onnx-to-dl -i model_sim.onnx -o model.dlc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
