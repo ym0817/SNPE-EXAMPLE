@@ -1,0 +1,3 @@
+/home/ymm/1/SNPE/Snpe_example/snpe_inference/build/CMakeFiles/rebuild_cache.dir
+/home/ymm/1/SNPE/Snpe_example/snpe_inference/build/CMakeFiles/edit_cache.dir
+/home/ymm/1/SNPE/Snpe_example/snpe_inference/build/CMakeFiles/snpe_infer_demo.dir

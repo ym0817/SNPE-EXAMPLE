@@ -1,0 +1,8 @@
+{
+	"model_file": "/home/ymm/1/SNPE/snpe_inference-main/bin/multi_label_classification.dlc",
+	"input_files": "/home/ymm/1/SNPE/snpe_inference-main/data/test_img",
+	"image_width": 448,
+	"image_height": 448,
+	"output_node": "outPutNode",
+	"use_quant": false
+}
